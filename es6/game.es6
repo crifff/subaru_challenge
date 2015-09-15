@@ -1,11 +1,12 @@
 import * as config from "./config.es6"
 import "./sound.es6"
 import Ball from "./ball.es6"
+import Bat from "./bat.es6"
 
 console.log(config)
 var renderer = PIXI.autoDetectRenderer(config.WIDTH, config.HEIGHT,{ antialias: true });
-renderer.view.style.width = window.innerWidth + "px"
-renderer.view.style.height = window.innerHeight + "px"
+renderer.view.style.width = config.WIDTH + "px"
+renderer.view.style.height = config.HEIGHT + "px"
 renderer.view.style.display = "block"
 document.body.appendChild(renderer.view)
 
@@ -17,34 +18,46 @@ var stage = new PIXI.Container()
 
 // stage.on('click', onClick)
 // stage.on('tap', onClick)
+setInterval(function () {
+  throwBall()
+}, 3000);
 
 var items={}
-function onClick()
+function onClick(){
+  if(items["ball"]){
+
+  if(items["bat"].hitCheck(items["ball"])){
+    items["ball"].hit()
+    createjs.Sound.play("hit")
+  }
+  }
+}
+function throwBall()
 {
   console.log("throw")
   createjs.Sound.play("ball")
-
-// var graphic = new PIXI.Graphics()
-// stage.addChild(graphic)
-  items["ball"]= new Ball(config.WIDTH/2 ,0 ,5)
+  items["ball"]= new Ball(config.WIDTH/2 ,50 ,5)
 }
-document.addEventListener("click",onClick)
+document.addEventListener("mousedown",onClick)
 document.addEventListener("touchstart",onClick)
 // run the render loop
-animate()
-
+items["bat"]= new Bat()
+var meter = new FPSMeter();
 var graphics = new PIXI.Graphics()
 stage.addChild(graphics)
 
 function animate() {
-    for(var i in items){
-      if(items[i].move()){
-        items[i].draw(graphics);
-      }else{
-        items[i].clear(graphics)
-        delete items[i]
-      }
+  graphics.clear()
+  for(var i in items){
+    if(items[i].move()){
+      items[i].draw(graphics);
+    }else{
+      items[i].clear(graphics)
+      delete items[i]
     }
-    renderer.render(stage)
-    requestAnimationFrame( animate )
   }
+  renderer.render(stage)
+    meter.tick();
+  requestAnimationFrame( animate )
+}
+requestAnimationFrame( animate )

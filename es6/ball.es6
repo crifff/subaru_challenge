@@ -5,7 +5,9 @@ export default class Ball{
     this.defaults={
       x: x,
       y: y,
-      radius: radius
+      radius: radius,
+      angle: Math.PI/2,
+      speed: 9.2
     }
     this.initialize();
   }
@@ -13,12 +15,23 @@ export default class Ball{
   initialize(){
     this.x =this.defaults["x"]
     this.y =this.defaults["y"]
+    this.angle = this.defaults["angle"]
+    this.speed = this.defaults["speed"]
     this.radius = this.defaults["radius"]
   }
 
+  hit(){
+    let min=Math.PI
+    let max=Math.PI*2
+    this.angle=( Math.random() * (max - min) ) + min;
+    console.log(this.angle)
+    this.speed =20
+  }
+
   move(){
-    this.y += 3
-    this.radius += 0.05
+    this.y += Math.sin(this.angle) * this.speed
+    this.x += Math.cos(this.angle) * this.speed
+    this.radius = this.y/30
     if(this.y > config.HEIGHT){
       return false
     }
@@ -29,7 +42,7 @@ export default class Ball{
     graphic.clear()
   }
   draw(graphic){
-    this.clear(graphic);
+    // this.clear(graphic);
     graphic.lineStyle(0)
     graphic.beginFill(0xFFFFFF)
     graphic.drawCircle(
