@@ -46,6 +46,6 @@ export default class StageGround {
       this.graphics,
       x,
       y,
-      10)
+      ball.radius)
     }
   }

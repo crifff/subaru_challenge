@@ -1,3 +1,34 @@
+// var renderer = PIXI.autoDetectRenderer(600, 480,{ antialias: true })
+// document.body.appendChild(renderer.view)
+// var stage = new PIXI.Container()
+// var thing = new PIXI.Graphics()
+// stage.addChild(thing)
+// var x=300
+// var y=100
+// var angle=400*Math.PI/180
+// var speed=10
+// var vx=Math.cos(angle)*speed
+// var vy=Math.sin(angle)*speed
+// var g=0.68
+// var restrection=0.6
+// function animate() {
+//   x+=vx
+//   vy+=g
+//   y+=vy
+//   if(y>480){
+//     y=480
+//     vy *= -restrection
+//   }
+//   thing.clear()
+//   thing.lineStyle(0)
+//   thing.beginFill(0x00FFFF)
+//   thing.drawCircle( x,y,10 )
+//   thing.endFill()
+//   renderer.render(stage)
+// requestAnimationFrame( animate )
+// }
+// requestAnimationFrame( animate )
+//
 import * as config from "./config.es6"
 import "./sound.es6"
 import Ball from "./ball.es6"
@@ -33,19 +64,20 @@ setTimeout(function () {
 
 var items={}
 function onClick(){
+  stages["home"].movie.gotoAndPlay(0)
   if(current_state="throw"){
     if(stages["home"].swing()){
 
       current_state=config.STATES["HIT"]
       var ball =stages["home"].items["ball"]
       stages["ground"].addChild("ball", new Ball({
-        x:config.WIDTH/2,
-        y:300,
+        x: config.WIDTH / 2,
+        y: 300,
+        angle:ball.angle,
+        speed: ball.speed,
         vx:ball.vx,
         vy:ball.vy,
-        vz:ball.yz,
-        speed:ball.speed,
-        angle:ball.angle,
+        vz:ball.vz
       }))
       setTimeout(function(){
         current_stage="ground"

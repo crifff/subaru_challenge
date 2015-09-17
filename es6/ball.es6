@@ -23,8 +23,12 @@ export default class Ball{
     let min=Math.PI
     let max=Math.PI*2
     this.angle=( Math.random() * (max - min) ) + min;
-    console.log(this.angle)
-    this.speed =20
+    this.speed =60
+
+    let zmin=280
+    let zmax=360
+    this.zAngle=(( Math.random() * (zmax - zmin) ) + zmin) * Math.PI/180;
+    this.vz = Math.sin(this.zAngle) * this.speed
   }
 
   move(){
@@ -42,9 +46,20 @@ export default class Ball{
   move_ground(scale){
     this.vy = Math.sin(this.angle) * this.speed*scale
     this.vx = Math.cos(this.angle) * this.speed*scale
+    this.vz -= 0.68
     this.y += this.vy
     this.x += this.vx
-    this.radius = this.z
+    this.z += this.vz
+    if(this.z<=0){
+      this.z=0
+      this.speed*=0.9
+      this.vz*=-0.5
+    }
+    var cof=30
+    if(this.z/cof<3){this.radius = 3}
+    else if(this.z/cof>10){this.radius=10}
+    else{this.radius=this.z/cof}
+
     if(this.y > config.HEIGHT){
       return false
     }
