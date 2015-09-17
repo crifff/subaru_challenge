@@ -3,10 +3,10 @@ import * as config from "./config.es6"
 export default class Bat{
   constructor(){
     this.defaults={
-      x: 100,
-      y: 300,
-      width: 100,
-      height: 100
+      x: 150,
+      y: 280,
+      width: 60,
+      height: 60
     }
     this.initialize();
   }
@@ -19,6 +19,7 @@ export default class Bat{
   }
 
   hitCheck(ball){
+    if(!ball)return false;
     if(
       this.x < ball.x &&
       ball.x < this.x + this.width &&
@@ -38,7 +39,7 @@ export default class Bat{
   }
   draw(graphic){
     // this.clear(graphic);
-    graphic.lineStyle(5, 0xFF0000);
+    graphic.lineStyle(2, 0xFF0000);
     graphic.drawRect(
       this.x,
       this.y,

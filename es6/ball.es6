@@ -17,6 +17,9 @@ export default class Ball{
     this.zAngle = this.defaults["zAngle"]||Math.PI/2
     this.speed = this.defaults["speed"]||0
     this.radius = this.defaults["radius"]||0
+    this.onSpeedZero = this.defaults["onSpeedZero"] || function(){}
+    this.onFirstBound = this.defaults["onFirstBound"] || function(){}
+    this.stoped=false
   }
 
   hit(){
@@ -37,9 +40,11 @@ export default class Ball{
     this.y += this.vy
     this.x += this.vx
     this.radius = this.y/30
-    if(this.y > config.HEIGHT){
-      return false
-    }
+    // if(this.y > config.HEIGHT){
+
+    //   return false
+    // }
+
     return true
   }
 
@@ -59,13 +64,19 @@ export default class Ball{
     if(this.z/cof<3){this.radius = 3}
     else if(this.z/cof>10){this.radius=10}
     else{this.radius=this.z/cof}
-
-    if(this.y > config.HEIGHT){
-      return false
+    //
+    // if(this.y > config.HEIGHT){
+    //   return false
+    // }
+    // console.log(this.speed)
+    if(this.stoped==false && this.speed < 0.1){
+      this.stoped=true
+      this.speed=0
+      this.onSpeedZero()
     }
+
     return true
   }
-
 
   clear(graphic){
     graphic.clear()

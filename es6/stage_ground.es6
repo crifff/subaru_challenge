@@ -7,18 +7,18 @@ export default class StageGround {
     var texture = PIXI.Texture.fromImage("image/ballpark2.gif");
     // create a new Sprite using the texture
     this.ground_image = new PIXI.Sprite(texture);
-
-    // center the sprites anchor point
-    //  bunny.anchor.x = 0.5;
-    //  bunny.anchor.y = 0.5;
-
-    // move the sprite t the center of the screen
-    this.ground_image.position.x = -300;
-    this.ground_image.position.y = -300;
+    this.initialize()
 
     this.stage.addChild(this.ground_image);
     this.graphics = new PIXI.Graphics()
     this.stage.addChild(this.graphics)
+  }
+  initialize(){
+    console.log("map init")
+    
+    // move the sprite t the center of the screen
+    this.ground_image.position.x = -300;
+    this.ground_image.position.y = -300;
   }
 
   addChild(key,obj){
@@ -27,7 +27,7 @@ export default class StageGround {
 
   animate(){
     this.graphics.clear()
-    var ball=this.items["ball"]
+    var ball = this.items["ball"]
     var scale=0.1
     ball.move_ground(scale)
     var x= ball.x
@@ -42,7 +42,7 @@ export default class StageGround {
     if(y > config.HEIGHT-50){y=config.HEIGHT-50;stopY=true}
     if(stopY){ this.ground_image.position.y -= ball.vy }
 
-    this.items["ball"].draw_ground(
+    if(this.items["ball"]) this.items["ball"].draw_ground(
       this.graphics,
       x,
       y,
