@@ -41,7 +41,7 @@ function onClick(){
       console.log(ball)
       stages["ground"].addChild("ball",  new Ball({
         x: config.WIDTH / 2,
-        y: 300,
+        y: 400,
         angle: ball.angle,
         speed: ball.speed,
         vx: ball.vx,
@@ -58,7 +58,7 @@ function onClick(){
 
       setTimeout(function(){
         current_stage="ground"
-      },1000)
+      },0)
       createjs.Sound.play("hit")
     })
 
@@ -112,12 +112,10 @@ function animate() {
   if(current_state==config.STATES["THROW"]){
     if(stages["home"].items["ball"]){
       // console.log(stages["home"].items["ball"].y)
-
-      if(stages["home"].items["ball"].y >= config.HEIGHT+20){
+      if(stages["home"].items["ball"].y >= config.HEIGHT+50){
         delete stages["home"].items["ball"]
+        createjs.Sound.play("strike")
         setTimeout(function () {
-
-          createjs.Sound.play("strike")
           console.log("reset")
           current_state=config.STATES["START"]
           throwBall()

@@ -4,7 +4,7 @@ export default class StageGround {
     this.items=[]
     this.stage = new PIXI.Container()
 
-    var texture = PIXI.Texture.fromImage("image/ballpark2.gif");
+    var texture = PIXI.Texture.fromImage("image/background_ground.png");
     // create a new Sprite using the texture
     this.ground_image = new PIXI.Sprite(texture);
     this.initialize()
@@ -15,10 +15,12 @@ export default class StageGround {
   }
   initialize(){
     console.log("map init")
-    
+
     // move the sprite t the center of the screen
-    this.ground_image.position.x = -300;
-    this.ground_image.position.y = -300;
+    this.ground_image.position.x = 0;
+    this.ground_image.position.y = 0;
+    this.camera=[-365,-270]
+    this.measure=0
   }
 
   addChild(key,obj){
@@ -32,15 +34,37 @@ export default class StageGround {
     ball.move_ground(scale)
     var x= ball.x
     var y= ball.y
-    var stopX=false;
-    var stopY=false;
+    this.measure += Math.sqrt(ball.x * ball.x + ball.y * ball.y)
+    // console.log(this.measure)
+    // console.log(ball.y)
+    // var stopX=false;
+    // var stopY=false;
+    if(this.ground_image.position.x > -700 && this.ground_image.position.x < 0){
+      this.camera[0]-=ball.vx
+    }
+    // console.log(this.ground_image.position.y)
+    if(this.ground_image.position.y<0){
+      this.camera[1]-=ball.vy
+    }
+    this.ground_image.position.x = this.camera[0]
+    this.ground_image.position.y = this.camera[1]
 
-    if(x < 50){x=50; stopX=true}
-    if(x > config.WIDTH-50){x=config.WIDTH-50;stopX=true; }
-    if(stopX){ this.ground_image.position.x -= ball.vx }
-    if(y < 50){y=50;stopY=true}
-    if(y > config.HEIGHT-50){y=config.HEIGHT-50;stopY=true}
-    if(stopY){ this.ground_image.position.y -= ball.vy }
+    // this.diffX = this.diffX || 0
+    //
+    // console.log(x)
+    //     if(this.ground_image.position.x > -700 && this.ground_image.position.x < 0){
+    //       if(x < 50){x=50; stopX=true}
+    //       if(x > config.WIDTH-50){x=config.WIDTH-50;stopX=true; }
+    //       if(stopX){
+    //          this.ground_image.position.x -= ball.vx }
+    //       // console.log(this.ground_image.position.x)
+    //     }else{
+    //       x +=this.ground_image.position.x
+    //     }
+
+    // if(y < 50){y=50;stopY=true}
+    // if(y > config.HEIGHT-50){y=config.HEIGHT-50;stopY=true}
+    // if(stopY){ this.ground_image.position.y -= ball.vy }
 
     if(this.items["ball"]) this.items["ball"].draw_ground(
       this.graphics,
