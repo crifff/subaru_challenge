@@ -20,20 +20,26 @@ export default class Ball{
     this.measure = 0
       this.homeBox=[0,0]
     this.onSpeedZero = this.defaults["onSpeedZero"] || function(){}
+    this.onFoul = this.defaults["onFoul"] || function(){}
+    this.onHomerun = this.defaults["onHomerun"] || function(){}
     this.onFirstBound = this.defaults["onFirstBound"] || function(){}
+    this.bountCount=0
+    this.firstBound=true
     this.stoped=false
   }
 
-  hit(){
-    let min=180
-    let max=360
-    this.angle=(( Math.random() * (max - min) ) + min) * Math.PI/180;
+  hit(angle,zAngle,pow){
+    // let min=180
+    // let max=360
+    // this.angle=(( Math.random() * (max - min) ) + min) * Math.PI/180;
     // this.angle=min//debug
-    this.speed =20
+    this.angle=(angle +180+90)*Math.PI/180
+    this.speed =pow
 
-    let zmin=10
-    let zmax=80
-    this.zAngle=(( Math.random() * (zmax - zmin) ) + zmin) * Math.PI/180;
+    // let zmin=10
+    // let zmax=80
+    // this.zAngle=(( Math.random() * (zmax - zmin) ) + zmin) * Math.PI/180;
+    this.zAngle=(zAngle+45)*Math.PI/180
     // this.zAngle=300* Math.PI/180;//debug
     this.vz = Math.sin(this.zAngle) * this.speed
 
@@ -68,7 +74,9 @@ export default class Ball{
     this.measure = Math.sqrt((this.homeBox[0]*this.homeBox[0]) + (this.homeBox[1]*this.homeBox[1]))
     // console.log(this.measure)
     if(this.z<=0){
+      this.firstBound
       this.z=0
+      this.bountCount++
       this.speed*=0.9
       this.vz*=-0.5
       // this.vz*=-1//debug
@@ -99,24 +107,27 @@ export default class Ball{
     }
     if(this.z<1){
       //homerun
-      if(this.measure>350){
+      var digree =this.angle*(180/Math.PI)
+      // console.log(this.angle,digree)
+      // exit;
+      if(this.firstBound && 315 <= digree){
+        if(this.stoped==false)this.onFoul()
         this.stoped=true
-        this.speed=0
-        this.onSpeedZero()
-        console.log("home run")
-      }
-      var digree =this.angle/Math.PI*180
-      if(315 <= digree){
+        // this.speed=0
+        // this.onSpeedZero()
+        // alert("faul")
+      } else if(this.firstBound && 225 >= digree){
+        if(this.stoped==false)this.onFoul()
         this.stoped=true
-        this.speed=0
-        this.onSpeedZero()
-        alert("faul")
-      }
-      if(225 >= digree){
+        // this.speed=0
+        // this.onSpeedZero()
+        // alert("faul")
+      }else if(this.firstBound && this.measure>350){
+        if(this.stoped==false)this.onHomerun()
         this.stoped=true
-        this.speed=0
-        this.onSpeedZero()
-        alert("faul")
+        // this.speed=0
+        // this.onSpeedZero()
+        // console.log("home run")
       }
 
     }

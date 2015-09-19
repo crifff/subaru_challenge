@@ -1,8 +1,9 @@
 export const WIDTH=320
 export const HEIGHT=480
 export const STATES={
-  START: 0,
-  THROW: 1,
-  HIT: 2,
-  BOUND: 3
+  OPENING:0,
+  START: 1,
+  THROW: 2,
+  HIT: 3,
+  BOUND: 4
 }

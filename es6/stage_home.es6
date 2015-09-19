@@ -89,10 +89,11 @@ export default class StageHome {
 
       animate_batter(){
         if(this.hited==false && this.batter_movie.currentFrame==3){
-          if(this.bat().hitCheck(this.ball())){
+          var hit=this.bat().hitCheck(this.ball())
+          if(hit != false){
             console.log("hit")
             this.hited=true
-            this.ball().hit()
+            this.ball().hit(hit[0],hit[1],hit[2])
             this.success()
           }
         }
