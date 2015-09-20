@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color:#ffffff;
+  font-family:Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+}
+
+
+#ending {
+  width: 320px;
+  height: 480px;
+  position:absolute;
+  top:0;
+  z-index: 20;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);;
+}
+#opening {
+  width: 320px;
+  height: 480px;
+  position:absolute;
+  top:0;
+  z-index: 10;
+  text-align: center;
+}
+#opening-container{
+  width: 320px;
+  height: 480px;
+  background-color: #000000;
+
+}
+
+.title {
+  position:absolute;
+  top:50px;
+}
+.title-image{
+  width:300px;
+}
+.startBtn{
+  font-size: 30px;
+  position: absolute;
+  top: 300px;
+  width:320px;
+  text-align:center;
+  /*color: */
+}
+.loading{
+  position:absolute;
+  width:40px;
+  left:140px;
+  top:300px;
+
+}
+h2{margin-bottom: 0;}
+#ending .score{
+  font-size:30px;
+}
+#ending .score .result{
+  font-size:50px;
+  font-weight: bold;
+}
+#ending .point{
+  font-size:20px;
+}
+#ending .point .result{
+  font-size:30px;
+  font-weight: bold;
+}
+
+.success.message{
+}
+.footer{
+  margin:8px;
+  margin-top:30px;
+  border: solid 1px #fff;
+}

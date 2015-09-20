@@ -82,7 +82,7 @@ export default class Ball{
       // this.vz*=-1//debug
     }
     // console.log(this.z)
-    if(this.z<100 && this.measure > 300 && this.measure<350){
+    if(this.z<50 && this.measure > 300 && this.measure<350){
       this.measure=300
       // console.log("refrect")
       // this.y=90
@@ -116,14 +116,14 @@ export default class Ball{
         // this.speed=0
         // this.onSpeedZero()
         // alert("faul")
-      } else if(this.firstBound && 225 >= digree){
+      } else if(this.firstBound && 220 >= digree){
         if(this.stoped==false)this.onFoul()
         this.stoped=true
         // this.speed=0
         // this.onSpeedZero()
         // alert("faul")
       }else if(this.firstBound && this.measure>350){
-        if(this.stoped==false)this.onHomerun()
+        if(this.stoped==false)this.onHomerun(this.measure)
         this.stoped=true
         // this.speed=0
         // this.onSpeedZero()

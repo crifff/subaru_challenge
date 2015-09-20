@@ -5,7 +5,7 @@ export default class Bat{
     this.defaults={
       x: 50,
       y: 280,
-      width: 160,
+      width: 60,
       height: 60
     }
     this.initialize();

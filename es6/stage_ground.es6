@@ -24,6 +24,12 @@ export default class StageGround {
     this.homerun_image.position.y=config.HEIGHT/2-20
     this.homerun_image.visible=false
     this.stage.addChild(this.homerun_image);
+
+ this.score = new PIXI.Text('', { font: 'bold 20px Arial', fill: '#ffffff', align: 'center' });
+ this.score.x = this.homerun_image.position.x+25;
+ this.score.y = this.homerun_image.position.y+40;
+
+this.stage.addChild(this.score);
 }
 initialize(){
   console.log("map init")
