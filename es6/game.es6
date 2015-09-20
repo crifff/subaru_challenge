@@ -119,7 +119,7 @@ function ending(){
   var page= $("#ending")
   page.find(".score .result").text(homerunCount)
   page.find(".point .result").text(totalPoint)
-  if(homerunCount>=1){
+  if(homerunCount>=5){
     $(".success.message").show()
     $(".fail.message").hide()
     $(".tweetButtonWrapper").html(
@@ -145,7 +145,7 @@ function retry(){
 }
 function throwBall()
 {
-  if(ballCount==3){
+  if(ballCount==10){
     createjs.Sound.stop("bgm")
     createjs.Sound.play("whistle")
     ending()
