@@ -9,7 +9,7 @@ export default class StageHome {
     this.bg.position.y = 0;
     this.stage.addChildAt(this.bg,0);
 
-    this.score = new PIXI.Text('CHALLENGE 0\nHOMERUN 0', { font: 'bold 16px Arial', fill: '#cccccc'});
+    this.score = new PIXI.Text('CHALLENGE 0/10\nHOMERUN 0', { font: 'bold 16px Arial', fill: '#cccccc'});
     this.score.x = 30;
     this.score.y = 2;
 

@@ -6,7 +6,37 @@ body {
   font-family:Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
 }
 
+.howtoplay{
+  position:absolute;
+  top:360px;
+  left:120px;
+  font-size:25px;
+}
 
+#howtoplay {
+  width: 320px;
+  height: 480px;
+  position:absolute;
+  top:0;
+  z-index: 30;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.8);;
+  margin:5px;
+}
+#howtoplay h1{
+  margin: 0;
+  text-align: center;
+}
+#howtoplay h4{margin: 0}
+#howtoplay ul{
+  margin: 0
+}
+#howtoplay .close{
+  display: block;
+  border: 1px solid #fff;
+  margin:8px;
+  text-align: center;
+}
 #ending {
   width: 320px;
   height: 480px;
@@ -39,7 +69,7 @@ body {
   width:300px;
 }
 .startBtn{
-  font-size: 30px;
+  font-size: 25px;
   position: absolute;
   top: 300px;
   width:320px;
@@ -75,4 +105,19 @@ h2{margin-bottom: 0;}
   margin:8px;
   margin-top:30px;
   border: solid 1px #fff;
+}
+.anim
+{
+  position: absolute;
+  top:170px;
+  left:120px;
+  width:80px;
+  height:80px;
+  background-image: url(/image/subaru.png);
+  background-size: 160px;
+  animation: parapara 1.0s steps(2) infinite;
+}
+@keyframes parapara {
+  0% { background-position-x: 0  ; }
+  100% { background-position-x: -160px; }
 }

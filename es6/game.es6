@@ -123,7 +123,7 @@ function ending(){
     $(".success.message").show()
     $(".fail.message").hide()
     $(".tweetButtonWrapper").html(
-      `<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-hashtags="subaruChallenge" data-dnt="true" data-text="10球中${homerunCount}ホームランでチャレンジ成功！${totalPoint}pt獲得しました" data-lang="ja">ツイート</a>`
+      `<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-hashtags="subaru_challenge" data-dnt="true" data-text="10球中${homerunCount}ホームランでチャレンジ成功！${totalPoint}pt獲得しました" data-lang="ja">ツイート</a>`
     )
     twttr.widgets.load()
   }else{
@@ -168,7 +168,7 @@ function throwBall()
   refleshBallCount()
 }
 function refleshBallCount(){
-  var text = `CHALLENGE ${ballCount}\nHOMERUN ${homerunCount}`
+  var text = `CHALLENGE ${ballCount}/10\nHOMERUN ${homerunCount}`
   stages["home"].score.text=text
 
 }
